@@ -9,6 +9,7 @@
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
 </head>
 
 <body>
@@ -54,7 +55,7 @@
 
                 <div class="contact-info">
 
-                    <a class="contact-item" href="mailto:youremail@gmail.com">
+                    <a class="contact-item" href="mailto:joshuaobiorah99@gmail.com">
                         <div class="contact-icon">📧</div>
                         <div>
                             <h3>Email</h3>
@@ -79,18 +80,23 @@
                     </a>
 
                 </div>
+                
+                <form class="contact-form" id="contact-form" action="https://formspree.io/f/xyeklavn" method="POST">
 
-                <form class="contact-form" action="https://formspree.io/f/YOUR_ID" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
 
-                    <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
 
-                    <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
 
-                    <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+                <!-- hidden spam trap: real visitors never see it -->
+                <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
-                    <button type="submit">Send Message</button>
+                <button type="submit">Send Message</button>
 
-                </form>
+                <p class="form-status" id="form-status" role="status"></p>
+
+            </form>
 
             </div>
 
@@ -100,6 +106,7 @@
 
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
     <script src="script.js"></script>
 
 </body>

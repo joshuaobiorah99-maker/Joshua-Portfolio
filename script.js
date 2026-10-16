@@ -115,3 +115,107 @@ navItems.forEach((link) => {
     });
 
 });
+
+// =========================
+// SMOOTH SCROLLING (LENIS)
+// =========================
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (typeof Lenis !== "undefined" && !prefersReducedMotion) {
+
+    const lenis = new Lenis({
+        duration: 1.2,
+        smoothWheel: true,
+        anchors: true
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+}
+
+// =========================
+// CONTACT FORM
+// =========================
+
+const contactForm = document.getElementById("contact-form");
+const formStatus = document.getElementById("form-status");
+
+if (contactForm) {
+
+    contactForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        const button = contactForm.querySelector("button");
+        button.disabled = true;
+        button.textContent = "Sending...";
+
+        try {
+
+            const response = await fetch(contactForm.action, {
+                method: "POST",
+                body: new FormData(contactForm),
+                headers: { Accept: "application/json" }
+            });
+
+            if (!response.ok) {
+                throw new Error("Request failed");
+            }
+
+            formStatus.textContent = "Thank you! Your message has been sent.";
+            formStatus.className = "form-status success";
+            contactForm.reset();
+
+        } catch (error) {
+
+            formStatus.textContent = "Something went wrong. Please try again or email me directly.";
+            formStatus.className = "form-status error";
+
+        }
+
+        button.disabled = false;
+        button.textContent = "Send Message";
+
+    });
+
+}
+
+    contactForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        const button = contactForm.querySelector("button");
+        button.disabled = true;
+        button.textContent = "Sending...";
+
+        try {
+
+            const response = await fetch(contactForm.action, {
+                method: "POST",
+                body: new FormData(contactForm),
+                headers: { Accept: "application/json" }
+            });
+
+            if (!response.ok) {
+                throw new Error("Request failed");
+            }
+
+            contactForm.reset();
+            showStatus("Thank you! Your message has been sent.", "success", 6);
+
+        } catch (error) {
+
+            showStatus("Something went wrong. Please try again or email me directly.", "error", 8);
+
+        }
+
+        button.disabled = false;
+        button.textContent = "Send Message";
+
+    });
