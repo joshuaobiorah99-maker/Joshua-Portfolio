@@ -1497,3 +1497,20 @@ header .nav-links a.active {
 .form-status.error {
     color: #f87171;
 }
+
+/* Typing effect */
+.typing {
+    color: #a855f7;
+}
+
+.typing::after {
+    content: "|";
+    margin-left: 3px;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
